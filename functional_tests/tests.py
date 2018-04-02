@@ -6,6 +6,7 @@ from django.test import LiveServerTestCase
 
 MAX_WAIT = 10
 
+
 class NewVisitorTest(LiveServerTestCase):
 
     def setUp(self):
@@ -35,7 +36,7 @@ class NewVisitorTest(LiveServerTestCase):
         # She notices the page title and header mention to-do lists
         self.assertIn('To-Do lists', self.browser.title)
         header_text = self.browser.find_element_by_tag_name('h1').text
-        self.assertIn('Your to-do list', header_text)
+        self.assertIn('Start a new To-Do list', header_text)
 
         # She is invited to enter a to-do item straight away
         inputbox = self.browser.find_element_by_id('id_new_item')
@@ -113,7 +114,7 @@ class NewVisitorTest(LiveServerTestCase):
         self.assertNotEqual(francis_list_url, edith_list_url)
 
         # Again, there is no trace of Edith's list
-        page_text = self.browser.find_elements_by_tag_name('body').text
+        page_text = self.browser.find_element_by_tag_name('body').text
         self.assertNotIn('Buy peacock feathers', page_text)
         self.assertIn('Buy milk', page_text)
 
